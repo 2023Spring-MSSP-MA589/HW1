@@ -12,11 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ##Q1:
 If $A \in R^{m\times n}$, show that $||A||_F \leq \sqrt{Rank(A)}||A||_2$
 
-##Ans:
+##Ans1:
 Since A has SVD which is $A = U\Sigma V' = \sum^{n}_{i=1}\sigma_i u_i v_i'$, so 
 $||A||_F = ||\sum^{n}_{i=1}\sigma_i u_i v_i'||_F = \sqrt{\sum^n_{i=1}\sigma_i^2}$, and
 $\sqrt{Rank(A)}=\sqrt{max\{r\geq 1, \sigma_r >0\}}$, $||A||_2 = \sigma_1$. Times $\sqrt{Rank(A)}$
-and $||A||_2$, we get $ \sqrt{r}\sigma_1$, we want to show that 
+and $||A||_2$ together, we get $\sqrt{r}\sigma_1$, we want to show that 
 $\sqrt{\sum^r_{i=1}\sigma_i^2} \leq \sqrt{r}\sigma_1$. Since both sides are positive, square both sides,
 we want to show that $\sum^r_{i=1}\sigma_i^2 \leq r\sigma_1^2$, which can be written in the form
 $\sigma_1^2 + \sigma_2^2 + ... +\sigma_r^2 \leq r\sigma_1^2$.
