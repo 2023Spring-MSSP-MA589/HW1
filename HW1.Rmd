@@ -9,23 +9,28 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##Q1:\
+**##Q1:**\
 If $A \in R^{m\times n}$, show that $||A||_F \leq \sqrt{Rank(A)}||A||_2$
 
-##Ans1:\
-Since A has SVD which is $A = U\Sigma V' = \sum^{n}_{i=1}\sigma_i u_i v_i'$, so
-$||A||_F = ||\sum^{n}_{i=1}\sigma_i u_i v_i'||_F = \sqrt{\sum^n_{i=1}\sigma_i^2}$, and \
-$\sqrt{Rank(A)}=\sqrt{max\{r\geq 1, \sigma_r >0\}}$, $||A||_2 = \sigma_1$. \
-Times $\sqrt{Rank(A)}$ and $||A||_2$ together, we get $\sqrt{r}\sigma_1$, we want to show that \
-$\sqrt{\sum^r_{i=1}\sigma_i^2} \leq \sqrt{r}\sigma_1$. \
-Since both sides are positive, square both sides,
-we want to show that \
-$\sum^r_{i=1}\sigma_i^2 \leq r\sigma_1^2$, which can be written in the form \
-$\sigma_1^2 + \sigma_2^2 + ... +\sigma_r^2 \leq r\sigma_1^2$. \
-Since in definition, $\sigma_1 \geq \sigma_2 \geq \sigma_3 \geq ... \geq \sigma_n \geq 0$, \
+**##Ans1:**\
+Since A has SVD which is $A = U\Sigma V' = \sum^{n}_{i=1}\sigma_i u_i v_i'$, so $||A||_F = ||\sum^{n}_{i=1}\sigma_i u_i v_i'||_F = \sqrt{\sum^n_{i=1}\sigma_i^2}$, and\
+$\sqrt{Rank(A)}=\sqrt{max\{r\geq 1, \sigma_r >0\}}$, $||A||_2 = \sigma_1$.\
+Times $\sqrt{Rank(A)}$ and $||A||_2$ together, we get $\sqrt{r}\sigma_1$, we want to show that\
+$\sqrt{\sum^r_{i=1}\sigma_i^2} \leq \sqrt{r}\sigma_1$.\
+Since both sides are positive, square both sides, we want to show that\
+$\sum^r_{i=1}\sigma_i^2 \leq r\sigma_1^2$, which can be written in the form\
+$\sigma_1^2 + \sigma_2^2 + ... +\sigma_r^2 \leq r\sigma_1^2$.\
+Since in definition, $\sigma_1 \geq \sigma_2 \geq \sigma_3 \geq ... \geq \sigma_n \geq 0$,\
 the formula is true. So we can say $||A||_F \leq \sqrt{Rank(A)}||A||_2$ is true.
 
-##Q2:\
+**##Q2:**\
 If $A \in R^{m\times n}$, and $B \in R^{n \times k}$ show that $||AB||_F \leq ||A||_2||B||_F$
 
-##Ans2:\
+**##Ans2:**\
+Say $B = \{B_1, B_2, ... , B_k\}$, where $B_i$ is the i-th column of matrix $B$.\
+So we can say that $||AB||_F^2 = \sum^k_{i=1}||AB_i||_F^2$,\
+and by the definition of spectral norm, $||AB_i||_2^2 \leq ||A||_2^2||B_i||_2^2$.\
+So $||AB||_F^2 = \sum^k_{i=1}||AB_i||_F^2 \leq ||A||_2^2\sum^k_{i=1}||B_i||_2^2$.\
+Since $||B||_F^2 = \sum^k_{i=1}||B_i||^2_2$,\
+we can get $||AB||_F^2 \leq ||A||_2^2\sum^k_{i=1}||B_i||_2^2 = ||A||_2^2||B||^2_F$.\
+Since both sides are larger than zero, we can say that $||AB||_F \leq ||A||_2||B||_F$
