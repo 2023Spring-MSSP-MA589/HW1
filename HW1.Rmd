@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 If $A \in R^{m\times n}$, show that $||A||_F \leq \sqrt{Rank(A)}||A||_2$
 
 **##Ans1:**\
-Since A has SVD which is $A = U\Sigma V' = \sum^{n}_{i=1}\sigma_i u_i v_i'$, so $||A||_F = ||\sum^{n}_{i=1}\sigma_i u_i v_i'||_F = \sqrt{\sum^n_{i=1}\sigma_i^2}$, and\
+Since A has SVD which is $A = U\Sigma V' = \sum^{n}_{i=1}\sigma_i U_i V_i'$, so $||A||_F = ||\sum^{n}_{i=1}\sigma_i U_i V_i'||_F = \sqrt{\sum^n_{i=1}\sigma_i^2}$, and\
 $\sqrt{Rank(A)}=\sqrt{max\{r\geq 1, \sigma_r >0\}}$, $||A||_2 = \sigma_1$.\
 Times $\sqrt{Rank(A)}$ and $||A||_2$ together, we get $\sqrt{r}\sigma_1$, we want to show that\
 $\sqrt{\sum^r_{i=1}\sigma_i^2} \leq \sqrt{r}\sigma_1$.\
@@ -33,4 +33,33 @@ and by the definition of spectral norm, $||AB_i||_2^2 \leq ||A||_2^2||B_i||_2^2$
 So $||AB||_F^2 = \sum^k_{i=1}||AB_i||_F^2 \leq ||A||_2^2\sum^k_{i=1}||B_i||_2^2$.\
 Since $||B||_F^2 = \sum^k_{i=1}||B_i||^2_2$,\
 we can get $||AB||_F^2 \leq ||A||_2^2\sum^k_{i=1}||B_i||_2^2 = ||A||_2^2||B||^2_F$.\
-Since both sides are larger than zero, we can say that $||AB||_F \leq ||A||_2||B||_F$
+Since both sides are larger than zero, we can say that $||AB||_F \leq ||A||_2||B||_F$.
+
+**##Q3:**\
+Let $A \in R^{m\times n}$, and $B \in R^{n \times k}$ show that $Rank(A)=Rank(A')$,\
+and $Rank(AB) \leq min(Rank(A),Rank(B))$.
+
+**##Ans3:**\
+1) Say there exists $x$, such that $A'Ax = 0$. So times $x'$ on both sides we can get $x'A'Ax=0$.\
+This is equal to $(Ax)'(Ax)=0$, so we can say that $Ax=0$. Therefore, the columns of $A'A$ shares the same linear relationship as A.\
+So $colRank(A'A)=colRank(A) \leq colRank(A')$. Do the previous steps again by replace A by A', to get $colRank(A'A)=colRank(A') \leq colRank(A)$.\
+So $colRank(A)=colRank(A')$. The proof of row rank is similar. We can finally prove $Rank(A)=Rank(A')$. 2) Since $AB=[Ab_1,Ab_2,...,Ab_n]$, means each row of AB is combination of rows of B.\
+So $Range(AB)\leq Range(B)$, so $dimRange(AB)\leq dimRange(B)$, which $Rank(AB) \leq Rank(B)$.\
+Similarly, each column of AB is combination of columns of A. So $Rank(AB) \leq Rank(A)$.\
+Leads to $Rank(AB) \leq min(Rank(A),Rank(B))$.
+
+**##Q4:**\
+1) Show that $\min\limits_{A_0 \in R^{m \times m}, A_0 singular}||A - A_0||_2 \geq \sigma_m$.\
+2) Let $E \in R^{m \times m}$, be such that $||E||_2 < 1/||A^{-1}||_2$, show that $A+E$ necessarily non-singular.\
+3) Conclude that $\inf\limits_{A_0 \in R^{m \times m},A_0 singular}||A-A_0||_2=\sigma_m$.\
+
+**##Ans4:**\
+1) Since $A_0 \in R^{m \times m}$ and $A_0$ is singular, so $Rank(A_0) \leq m$.\
+Moreover, $\sigma_1 \geq \sigma_2 \geq \sigma_3 \geq ... \geq \sigma_n \geq 0$.\
+By the proof of Eckart-Young Theorem:\
+Find $b \in span(V_1,V_2,...,V_{k+1}) \bigcap Ker(B)$, such that\
+$||X-B||_2^2= ||(X-B)b||_2^2=||Xb||_2^2=\sum_{i=1}^S \sigma_i^2 <V_i,b>^2=\sum_{i=1}^{k+1} \sigma_i^2 <b,V_i>^2 \geq \sigma_{k+1}^2\sum_{i=1}^{k+1}<b,V_i>^2$.\
+So $||X-B||_2^2 \geq \sigma_{k+1}^2$, $||X-B||_2 \geq \sigma_{k+1}$.\
+On the other hand, $||X-B_k||_2=||\sum_{i=k+1}^S\sigma_i U_i V_i'||_2=\sigma_{k+1}$.\
+Hence$\min\limits_{B\in R^{m \times n}, Rank(B)=k}||X-B||_2 \leq \sigma_{k+1}$.\
+So we get $\min\limits_{B\in R^{m \times n}, Rank(B)=k}||X-B||_2 = \sigma_{k+1}$ Replace $B$ by $A_0$, we can get $\min\limits_{A_0 \in R^{m \times m}, A_0 singular}||A - A_0||_2 \geq \sigma_m$.\
