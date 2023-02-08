@@ -63,3 +63,9 @@ So $||X-B||_2^2 \geq \sigma_{k+1}^2$, $||X-B||_2 \geq \sigma_{k+1}$.\
 On the other hand, $||X-B_k||_2=||\sum_{i=k+1}^S\sigma_i U_i V_i'||_2=\sigma_{k+1}$.\
 Hence$\min\limits_{B\in R^{m \times n}, Rank(B)=k}||X-B||_2 \leq \sigma_{k+1}$.\
 So we get $\min\limits_{B\in R^{m \times n}, Rank(B)=k}||X-B||_2 = \sigma_{k+1}$ Replace $B$ by $A_0$, we can get $\min\limits_{A_0 \in R^{m \times m}, A_0 singular}||A - A_0||_2 \geq \sigma_m$.\
+
+2)  If $A+E$ is singular, since we know $||E||_2 < 1/||A^{-1}||_2$, and $\sigma_1 \geq \sigma_2 \geq \sigma_3 \geq ... \geq \sigma_n \geq 0$.\
+We can get that $||A^{-1}||_2=\sigma_m$, and $||E||_2 < \sigma_m^{-1}$.
+Then by the previous question, we can get that $\sigma_m \leq \min\limits_{A_0\in R^{m\times m}, A_0 singular}||A-A_0||_2 \leq ||A-(A+E)||_2=||-E||_2=||E||_2 < 1/||A^{-1}||_2=\sigma_m^{-1}$. Because of the contradiction, $A+E$ is non-singular.
+
+3)  By proof in previous questions, $\min\limits_{B\in R^{m \times n}, Rank(B)=k}||X-B||_2 = \sigma_{k+1}$, and $\min\limits_{A_0 \in R^{m \times m}, A_0 singular}||A - A_0||_2 \geq \sigma_m$, it's true that $\inf\limits_{A_0 \in R^{m \times m},A_0 singular}||A-A_0||_2=\sigma_m$.
